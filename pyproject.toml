@@ -1,0 +1,38 @@
+[project]
+name = "hunter-mcp"
+version = "0.1.1"
+description = "MCP Server for Qianxin Hunter cyberspace mapping"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "httpx>=0.28.1",
+    "mcp>=1.26.0",
+]
+keywords = ["mcp", "hunter", "cyberspace", "security"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Security",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+license = "MIT"
+authors = [
+    { name = "PiggyHurry" }
+]
+
+[project.urls]
+Repository = "https://github.com/PiggyHurry/hunter-mcp"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project.scripts]
+hunter-mcp = "hunter_mcp.server:main"
+
