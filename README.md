@@ -13,32 +13,9 @@
 
 ## 安装 MCP Server
 
-#### 使用 uvx 从 PyPI 下载安装 Mcp
+### 配置 mcp.json
 
-```bash
-uvx hunter-mcp
-```
-
-#### 使用 pip 从 PyPI 下载安装 Mcp
-
-```bash
-pip install hunter-mcp
-#pip install --index-url https://pypi.org/simple hunter-mcp
-```
-
-#### 从 github 下载安装 Mcp，使用 pip 安装
-
-```bash
-git clone https://github.com/PiggyHurry/hunter-mcp.git
-cd hunter-mcp
-pip install .
-# pip install -e . # Editable
-#pip show hunter-mcp
-```
-
-## 配置 MCP Client
-
-##### 简单快速配置（免先安装）
+#### 简单快速配置（推荐）
 
 ```json
 {
@@ -56,7 +33,43 @@ pip install .
 }
 ```
 
-##### 或（确保已安装）
+#### 或先安装 cli，再配置 json
+
+```bash
+# 使用 uv 从 PyPI 下载安装 cli
+uv tool install hunter-mcp
+```
+
+```json
+{
+  "mcpServers": {
+    "hunter-mcp": {
+      "command": "hunter-mcp",
+      "args": [],
+      "env": {
+        "HUNTER_API_KEY": "xxx"
+      }
+    }
+  }
+}
+```
+
+#### 或先下载/安装项目，再配置 json
+
+```bash
+# 使用 pip 从 PyPI 下载安装 Mcp
+pip install hunter-mcp
+#pip install --index-url https://pypi.org/simple hunter-mcp
+```
+
+```bash
+# 从 github 下载安装 Mcp，使用 pip 安装
+git clone https://github.com/PiggyHurry/hunter-mcp.git
+cd hunter-mcp
+pip install .
+# pip install -e . # Editable
+#pip show hunter-mcp
+```
 
 ```json
 {
@@ -75,7 +88,7 @@ pip install .
 }
 ```
 
-##### 配置环境变量
+#### 配置环境变量
 
 ```json
 {
@@ -112,7 +125,63 @@ hunter检索接口和批量/导出接口，默认返回权限内所有可导出�
 
 #### 获取 api-key
 
-- 登录 [https://hunter.qianxin.com](https://hunter.qianxin.com) → 个人中心 → API管理
+- 登录 [https://hunter.qianxin.com](https://hunter.qianxin.com) → 个人中心 → 我的信息 → API-KEY
+
+### 在 claude code 中配置
+
+```bash
+# Add hunter mcp
+claude mcp add hunter-mcp --env HUNTER_API_KEY=xxx --env DEFAULT_SEARCH_FIELDS=ip,port,domain -- uvx hunter-mcp
+# List installed servers
+claude mcp list
+# Edit hunter mcp
+vim ~/.claude.json
+```
+
+```json
+{
+  "mcpServers": {
+    "hunter-mcp": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": [
+        "hunter-mcp"
+      ],
+      "env": {
+        "HUNTER_API_KEY": "xxx"
+      }
+    }
+  }
+}
+```
+
+### 在 opencode 中配置
+
+```bash
+# Add hunter mcp
+opencode mcp add
+# List installed servers
+opencode mcp list
+# Edit hunter mcp
+vim ~/.config/opencode/opencode.json
+```
+
+```json
+{
+  "mcp": {
+    "hunter-mcp": {
+      "type": "local",
+      "command": [
+        "uvx",
+        "hunter-mcp"
+      ],
+      "environment": {
+        "HUNTER_API_KEY": "xxx"
+      }
+    }
+  }
+}
+```
 
 ## MCP 工具说明
 
@@ -248,6 +317,7 @@ web.title="admin" || web.title="login"
 ```
 
 ## Links
+
 - **PyPI**: https://pypi.org/project/hunter-mcp
 - **GitHub**: https://github.com/PiggyHurry/hunter-mcp
 - **Hunter**: https://hunter.qianxin.com
