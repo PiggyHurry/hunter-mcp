@@ -1,12 +1,12 @@
 [project]
 name = "hunter-mcp"
-version = "0.1.2"
+version = "0.1.3"
 description = "MCP Server for Qianxin Hunter cyberspace mapping"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
+    "fastmcp>=3.3.1",
     "httpx>=0.28.1",
-    "mcp>=1.26.0",
 ]
 keywords = ["mcp", "hunter", "cyberspace", "security"]
 classifiers = [
@@ -35,4 +35,3 @@ build-backend = "hatchling.build"
 
 [project.scripts]
 hunter-mcp = "hunter_mcp.server:main"
-

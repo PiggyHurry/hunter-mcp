@@ -1,4 +1,4 @@
-from mcp.server.fastmcp import FastMCP
+from fastmcp import FastMCP
 import base64
 import httpx
 import os
@@ -165,7 +165,7 @@ async def hunter_batch_task_progress(task_id: int) -> str:
 @mcp.tool()
 async def hunter_batch_task_result_download(task_id: int, save_dir: str = None, file_name: str = None) -> str:
     """
-    下载 Qianxin Hunter 批量查询的导出文件（CSV格式），保存到本地。注意：需先使用 get_hunter_batch_task_progress 确认任务已完成。
+    下载 Qianxin Hunter 批量查询的导出文件（CSV格式），保存到本地。注意：需先使用 hunter_batch_task_progress 确认任务已完成。
 
     Args:
         task_id: 任务 ID。
